@@ -39,6 +39,7 @@ set(PLUGIN_SOURCES zstd_h5plugin.c)
 
 # HDF5 plugin as static library
 add_library(zstd_h5_plugin STATIC ${PLUGIN_SOURCES})
+target_include_directories(zstd_h5_plugin PRIVATE "${zstd_SOURCE_DIR}/lib")
 set_target_properties(zstd_h5_plugin PROPERTIES
     OUTPUT_NAME H5Zzstd
     POSITION_INDEPENDENT_CODE ON
