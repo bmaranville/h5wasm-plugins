@@ -50,11 +50,11 @@ target_link_libraries(zstd_h5_plugin hdf5-wasm libzstd_static)
 
 # create combined library (including libzstd)
 set(OUTPUT_FILE libH5Zzstd.so CACHE INTERNAL "Output file name")
-set(PLUGIN_DIR ${CMAKE_CURRENT_SOURCE_DIR}/dist CACHE PATH "")
 add_custom_target(zstd_h5_plugin_shared ALL 
   COMMAND 
     ${CMAKE_C_COMPILER} -s SIDE_MODULE=1 libH5Zzstd.a ${zstd_BINARY_DIR}/lib/libzstd.a -o ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_FILE}
   DEPENDS zstd_h5_plugin libzstd_static
 )
 
+set(PLUGIN_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../dist CACHE PATH "")
 install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_FILE} DESTINATION ${PLUGIN_DIR})
